@@ -1,3 +1,4 @@
+
 public abstract class Conta implements iConta {
     protected static final int AgenciaPadrao = 1; // Ajustado para um valor inteiro
     protected static int SEQUENCIAL = 1;
@@ -5,11 +6,17 @@ public abstract class Conta implements iConta {
     protected int agencia;
     protected int numero;
     protected double saldo;
+    protected Cliente cliente;
 
-    public Conta(int agencia, double saldo) {
+    public Conta(Cliente cliente) {
         this.agencia = agencia; // Usar o parâmetro passado
         this.numero = SEQUENCIAL++;
         this.saldo = saldo; // Inicializar saldo
+        this.cliente = cliente;
+    }
+
+    public Conta(int agencia2, double saldo2) {
+        //TODO Auto-generated constructor stub
     }
 
     public void sacar(double valor) {
