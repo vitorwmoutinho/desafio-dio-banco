@@ -1,41 +1,45 @@
 public abstract class Conta implements iConta {
+    protected static final int AgenciaPadrao = 1; // Ajustado para um valor inteiro
+    protected static int SEQUENCIAL = 1;
 
-    private int agencia;
-    private int numero;
-    private double saldo;
+    protected int agencia;
+    protected int numero;
+    protected double saldo;
 
-    public void sacar(double valor){
-
+    public Conta(int agencia, double saldo) {
+        this.agencia = agencia; // Usar o parâmetro passado
+        this.numero = SEQUENCIAL++;
+        this.saldo = saldo; // Inicializar saldo
     }
 
-    public void depositar(double valor){
-        
+    public void sacar(double valor) {
+        if (saldo >= valor) {
+            saldo -= valor;
+        } else {
+            throw new IllegalArgumentException("Saldo insuficiente!");
+        }
     }
 
-    public void transferir(double valor, Conta contaDestino){
-        
-    }
-    
-
-    
-
-    public Conta(int agencia, int numero, double saldo) {
-        this.agencia = agencia;
-        this.numero = numero;
-        this.saldo = saldo;
+    public void depositar(double valor) {
+        saldo += valor;
     }
 
-    public void sacar(){
-
+    public void transferir(double valor, Conta contaDestino) {
+        this.sacar(valor);
+        contaDestino.depositar(valor);
     }
 
-    public void depositar(){
-        
+    public int getAgencia() {
+        return agencia;
     }
 
-    public void transferir(){
-        
+    public int getNumero() {
+        return numero;
     }
 
+    public double getSaldo() { // Correção no nome do método
+        return saldo;
+    }
 
+    public abstract void imprimirExtrato(); // Método abstrato para ser implementado nas subclasses
 }
