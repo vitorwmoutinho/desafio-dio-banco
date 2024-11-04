@@ -1,8 +1,17 @@
-public class ContaPoupanca {
+public class Conta {
 
     private int agencia;
     private int numero;
     private double saldo;
+    
+
+    
+
+    public Conta(int agencia, int numero, double saldo) {
+        this.agencia = agencia;
+        this.numero = numero;
+        this.saldo = saldo;
+    }
 
     public int getAgencia() {
         return agencia;
@@ -27,5 +36,6 @@ public class ContaPoupanca {
     public void transferir(){
         
     }
+
 
 }
